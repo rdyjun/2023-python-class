@@ -16,18 +16,27 @@ window.configure(bg='white')
 today_date = time.localtime(time.time())
 today = time.strftime("%A, %d %B", today_date)
 
+header_frame = tk.Frame(window, bg="white")
+header_frame.pack(padx=10, pady=10, fill=tk.X)
+
 # 날짜 생성
-date_box = tk.Label(window, text=today, width=25)
-date_box.pack(padx=10, pady=10)
+date_box = tk.Label(header_frame, text=today)
+date_box.pack(padx=(10, 50), pady=10, side=tk.LEFT)
 date_box.configure(fg = dk, bg = 'white')
-date_box.config(font=("Arial", 20, 'bold'))
+date_box.config(font=("Arial", 24, 'normal', 'bold'))
 
-#plus 아이콘
-ps_icon = tk.PhotoImage(file="img/plus.png")
-ps_icon = ps_icon.subsample(2, 2)
+#plus 아이콘 (상대 경로)
+ps_icon = tk.PhotoImage(file="/Users/joosungjun/Documents/Dev/2023-python-class/ToDoList/img/plus.png")
 
+def aaa () :
+    print("test")
+    
 # plus 버튼
-add_box = tk.Label(window, image=ps_icon)
+add_box = tk.Label(header_frame, image=ps_icon, bg="white")
+add_box.pack(side=tk.RIGHT, padx=(10, 20), pady=10)
+add_box.bind("<Button-1>", lambda event: aaa())
+add_box.configure(cursor='hand2')
+
 
 # 리스트 박스 생성
 tasks_listbox = tk.Listbox(window, width=50)
